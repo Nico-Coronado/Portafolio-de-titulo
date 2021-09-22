@@ -1,0 +1,64 @@
+{% extends 'plantilla_empleado.html' %} {% load widget_tweaks %}    {% load mathfilters %}
+
+{% block title %}Empleado{% endblock title %}
+
+{% block content %}
+{% if user.is_empleado == True or user.is_superuser%}
+
+<h1 id="titulo">SOPORTE DEL HOSTAL CLARITA</h1> 
+<p style="text-align: center; font-size: x-large;" >Este manual de ayuda sirve para cada una de las funciones que usted puede ver en la barra de navegación superior. Haga click en el manual que le interese y se desplegará la explicación.</p>
+<h2 id="titulo">¿Con qué necesitas ayuda?</h2> 
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="headingOne"  style="text-align: center;">
+        <h4 class="panel-title"  >
+          <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Manual Sistema de Registros de Ordenes de Pedido
+          </a>
+        </h4>
+      </div>
+      <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+        <div class="panel-body">
+            En este sistema usted puede interactuar con los proveedores ingresados para poder consultar productos dependiendo del stock total del mismo, si desea realizar un pedido al proveedor
+            ingresado puede agregar la cantidad en una tabla inferior que se le mostrara al momento de consultar, en caso de agregar al carrito podra realizar el pedido directamente.            
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div  class="panel-heading" style="text-align: center;" role="tab" id="headingTwo">
+        <h4 class="panel-title">
+          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            Manual Sistema de Administrar Ordenes de Pedido
+          </a>
+        </h4>
+      </div>
+      <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+        <div class="panel-body">
+            En este sistema usted tiene una tabla superior que cuenta con los pedidos para aceptar o rechazar, posterior a este estaran los pedidos pendientes
+            con la funcionalidad de poder ver el detalle de este y por ultimo los pedidos creados, donde podra consultar detalle modificar y eliminar, directamente en esta tabla puede enviar el pedido al proveedor.        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading" style="text-align: center;" role="tab" id="headingThree">
+        <h4 class="panel-title">
+          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            Manual Sistema Historial de Ordenes de Pedido
+        </a>
+        </h4>
+      </div>
+      <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+        <div class="panel-body">
+            En esta pestaña usted puede visualizar los pedidos aceptados, ademas de contar con un boton que mostrará el detalle del pedido, siguiendo con la tabla
+            tambien se puede ver los pedidos por recepcionar, mas abajo los pedidos cancelados y por último los rechazados con la opción de ver el detalle en cada uno de ellos.            
+        </div>
+      </div>
+    </div>
+
+</div>
+
+<div id="space"></div>
+
+{% else %}
+<h1 id="mensaje" >Usted no esta autorizado para estar en este lugar</h1>
+{% endif %}
+{% endblock %}

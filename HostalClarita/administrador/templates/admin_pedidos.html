@@ -1,0 +1,73 @@
+{% extends 'plantilla.html' %}
+
+{% block title %}Hostal Doña Clarita - Pedidos{% endblock title %}
+
+{% block content %}
+{% if user.is_superuser %}
+<h1 id="titulo">PEDIDOS CREADOS</h1> 
+<div id="space"></div>
+        <table class="table table-striped table-bordered" name="tablaPedidos" id="tablaPedidos">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Fecha de Creación</th> 
+                <th>TOTAL</th> 
+                <th>ESTADO</th>
+                <th>Botón Ver Detalle</th>
+                <th>Botón Eliminar</th>
+
+        </thead>
+        <tbody>
+            {% for pedidoCreado in listaPedidosCreados   %} 
+        <tr>
+            <td>{{pedidoCreado.0}}</td>
+            <td>{{pedidoCreado.1}} </td>
+            <td>{{pedidoCreado.3}} </td>
+
+
+
+            {%if pedidoCreado.2 == 0%}
+            <td> Pedido Creado </td>
+            {%elif pedidoCreado.2 == 1%}
+            <td> Pedido Pendiente </td>
+            {%elif pedidoCreado.2 == 2%}
+            <td>Pedido Entregado </td>
+            {%elif pedidoCreado.2 == 3%}
+            <td>Pedido Rechazado</td>
+            {%elif pedidoCreado.2 == 4%}
+            <td>Pedido Cancelado</td>
+            {%elif pedidoCreado.2 == 5%}
+            <td> Pedido Aceptado</td>
+
+            {%endif%}
+
+            <form action="{% url 'mostrarpedido' %}" method="POST"> 
+                {% csrf_token %}                  
+                    <td>
+                        <button type="submit" id="btnVerDetallePedido" name="btnVerDetallePedido" class="btn btn-info" value={{pedidoCreado.0}}>Ver Detalle</button>
+                    </td>   
+            </form>   
+            <form action="{% url 'administrarpedido' %}" method="POST" name="formadminp" id="formadminp" > 
+                {% csrf_token %}       
+                <td>        
+                        <button type="submit" id="btnEliminarPedidoAP" name="btnEliminarPedidoAP" class="btn btn-danger" value={{pedidoCreado.0}}>Eliminar</button>
+                    </td>
+            </form>      
+        
+            
+                {% empty %}
+                <h2 style="color: black; font-size: x-large; margin: auto;
+                text-align: center;
+                font-weight: bold; padding: 20px;">No hay pedidos creados.</h2>
+            </tr>
+                {% endfor %}
+        </tr>           
+            
+            
+        </tbody>
+    </table>
+
+{% else %}
+<h1 id="mensaje" >Usted no esta autorizado para estar en este lugar</h1>
+{% endif %}
+{% endblock %}

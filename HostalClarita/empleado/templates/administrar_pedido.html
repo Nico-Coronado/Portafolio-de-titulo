@@ -1,0 +1,166 @@
+{% extends 'plantilla_empleado.html' %} {% load widget_tweaks %}    {% load mathfilters %}
+
+{% block title %}Empleado{% endblock title %}
+
+{% block content %}
+{% if user.is_empleado == True or user.is_superuser%}
+
+<h1 id="titulo">PEDIDOS POR RECEPCIONAR</h1> 
+<div id="space"></div>
+<div id="space"></div>
+<table class="table table-striped table-bordered" name="tbPediRevisar" id="tbPediRevisar">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Fecha de Creación</th> 
+            <th>TOTAL</th> 
+            <th>Aceptar los productos</th> 
+            <th>Detalles</th> 
+            <th>Rechazar los productos</th> 
+
+            </tr>
+    </thead>
+    <tbody>
+        {% for pedidoCreado in listaPedidosPorRecibir   %} 
+    <tr>
+        <td>{{pedidoCreado.0}}</td>
+        <td>{{pedidoCreado.1}} </td>
+        <td>$&nbsp;{{pedidoCreado.3}} </td>       
+        <form action="{% url 'administrarpedido' %}" method="POST"> 
+            {% csrf_token %}                  
+                <td>
+                    <button type="submit" id="btnAceptarProductos" name="btnAceptarProductos" class="btn btn-success" value={{pedidoCreado.0}}>Aceptar Productos</button>
+                </td>
+        </form>       
+        <form action="{% url 'mostrarpedido' %}" method="POST"> 
+            {% csrf_token %}                  
+                <td>
+                    <button type="submit" id="btnVerDetallePedido" name="btnVerDetallePedido" class="btn btn-info" value={{pedidoCreado.0}}>Ver Detalle</button>
+                </td>
+        </form>       
+        <form action="{% url 'administrarpedido' %}" method="POST"> 
+            {% csrf_token %}                  
+                <td>
+                    <button type="submit" id="btnRechazarOP" name="btnRechazarOP" class="btn btn-danger" value={{pedidoCreado.0}}>Rechazar</button>
+                </td>
+        </form>       
+
+            {% empty %}
+            <h2 style="color: green; font-size: x-large; margin: auto;
+            text-align: center;
+            font-weight: bold; padding: 20px;">No hay pedidos por recepcionar.</h2>
+        </tr>
+            {% endfor %}
+    </tr>           
+        
+        
+    </tbody>
+</table>
+
+
+
+
+<h1 id="titulo">PEDIDOS PENDIENTES</h1> 
+<div id="space"></div>
+<table class="table table-striped table-bordered" id="tbPediPendientes" name="tbPediPendientes">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Fecha de Creación</th> 
+            <th>TOTAL</th> 
+            <th>Detalle</th> 
+
+            </tr>
+    </thead>
+    <tbody>
+        {% for pedidoCreado in listaPedidosPendientes   %} 
+    <tr>
+        <td>{{pedidoCreado.0}}</td>
+        <td>{{pedidoCreado.1}} </td>
+        <td>$&nbsp;{{pedidoCreado.3}} </td>       
+        <form action="{% url 'mostrarpedido' %}" method="POST"> 
+            {% csrf_token %}                  
+                <td>
+                    <button type="submit" id="btnVerDetallePedido" name="btnVerDetallePedido" class="btn btn-info" value={{pedidoCreado.0}}>Ver Detalle</button>
+                </td>
+        </form>       
+    
+
+            {% empty %}
+            <h2 style="color: rgb(0, 87, 128); font-size: x-large; margin: auto;
+            text-align: center;
+            font-weight: bold; padding: 20px;">No hay pedidos pendientes.</h2>
+        </tr>
+            {% endfor %}
+    </tr>           
+        
+        
+    </tbody>
+</table>
+
+
+
+<h1 id="titulo">PEDIDOS CREADOS</h1> 
+<div id="space"></div>
+        <table class="table table-striped table-bordered" id="tbPediCreados" name="tbPediCreados">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Fecha de Creación</th> 
+                <th>TOTAL</th> 
+                <th>Enviar</th> 
+                <th>Detalle</th> 
+                <th>Modificaciones</th> 
+                <th>Eliminar</th> 
+
+                </tr>
+        </thead>
+        <tbody>
+            {% for pedidoCreado in listaPedidosCreados   %} 
+        <tr>
+            <td>{{pedidoCreado.0}}</td>
+            <td>{{pedidoCreado.1}} </td>
+            <td>$&nbsp;{{pedidoCreado.3}} </td>
+            <form action="{% url 'administrarpedido' %}" method="POST"> 
+                {% csrf_token %}                  
+                    <td>
+                        <button type="submit" id="btnEnviarPedido" name="btnEnviarPedido" class="btn btn-success" value={{pedidoCreado.0}}>Enviar al Proveedor</button>
+                    </td>
+            </form>   
+            <form action="{% url 'mostrarpedido' %}" method="POST"> 
+                {% csrf_token %}                  
+                    <td>
+                        <button type="submit" id="btnVerDetallePedido" name="btnVerDetallePedido" class="btn btn-info" value={{pedidoCreado.0}}>Ver Detalle</button>
+                    </td>
+            </form>   
+            <form action="{% url 'modificarpedido' %}" method="POST"> 
+                {% csrf_token %}                  
+                    <td>
+                        <button type="submit" id="btnModificarPedido" name="btnModificarPedido" class="btn btn-warning" value={{pedidoCreado.0}}>Modificar</button>
+                    </td>
+            </form>   
+            <form action="{% url 'administrarpedido' %}" method="POST"> 
+                {% csrf_token %}                  
+                    <td>
+                        <button type="submit" id="btnEliminarPedido" name="btnEliminarPedido" class="btn btn-danger" value={{pedidoCreado.0}}>Eliminar</button>
+                    </td>
+            </form>      
+                
+        
+
+                {% empty %}
+                <h2 style="color: black; font-size: x-large; margin: auto;
+                text-align: center;
+                font-weight: bold; padding: 20px;">No hay pedidos creados.</h2>
+            </tr>
+                {% endfor %}
+        </tr>           
+            
+            
+        </tbody>
+    </table>
+
+{% else %}
+<h1 id="mensaje" >Usted no esta autorizado para estar en este lugar</h1>
+{% endif %}
+{% endblock %}

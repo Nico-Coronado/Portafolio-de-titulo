@@ -1,0 +1,124 @@
+{% extends 'plantilla_empleado.html' %} {% load widget_tweaks %}    {% load mathfilters %}
+
+{% block title %}Empleado{% endblock title %}
+
+{% block content %}
+{% if user.is_empleado == True or user.is_superuser%}
+    <h1 id="titulo">PROVEEDORES</h1> 
+    <div id="space"></div>
+
+    <div class="formulario">
+            <form action="{% url 'crearpedido' %}" method="POST" >
+                {% csrf_token %}
+                {% for field in formProveedores.visible_fields %}
+                    <div class="form-group">
+                        {{ field.label_tag }}
+                        {% render_field field class="form-control" %}
+                          
+                    </div>
+                {% endfor %}
+                <div id="space"></div>
+                <button type="submit" class="btn btn-primary btn-block" >Consultar</button>
+            </form>
+
+    <h1 id="titulo">PRODUCTOS</h1> 
+     
+    <table class="table table-striped table-bordered" name="tablaMercado" id="tablaMercado">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Marca</th> 
+                <th>Descripción</th> 
+                <th>Fecha de Vencimiento</th>
+                <th>Stock</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for elemento in listaDeProductos %} 
+        <tr>
+            <td>{{elemento.2}}</td>
+            <td>{{elemento.3}} </td>
+            <td>{{elemento.4}} </td>
+            <td>{{elemento.5}} </td>
+            <td>{{elemento.7}} </td>    
+            <td>$&nbsp;{{elemento.6}} </td>    
+            <form action="{% url 'crearpedido' %}" method="POST" > 
+                {% csrf_token %}
+
+                    <td>
+                        <input type="number" id="cantidadProductos" name="cantidadProductos" min="1" max={{elemento.7}} required>                
+                    </td>  
+                    <td>
+                        <button type="submit" id="btnAgregarAlCarro" name="btnAgregarAlCarro" class="btn btn-primary" value={{forloop.counter0}}>Agregar al Carrito</button>
+                    </td>
+                </form>
+        
+         
+
+                {% empty %}
+                <h2 style="color: green; font-size: x-large; margin: auto;
+                text-align: center;
+                font-weight: bold; padding: 20px;">Seleccione un proveedor para desplegar la lista de productos disponibles.</h2>
+            </tr>
+                {% endfor %}
+        </tr>           
+            
+            
+        </tbody>
+      </table>
+      <div id="space"></div>
+      <h1 id="titulo">CARRITO DE COMPRAS</h1> 
+      <table class="table table-striped table-bordered" name="tablaCesta" id="tablaCesta">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Marca</th> 
+                <th>Descripción</th> 
+                <th>Fecha de Vencimiento</th>
+                <th>Cantidad</th>
+                <th>Total</th>
+                <th>Acción</th>
+
+              </tr>
+        </thead>
+        <tbody>
+            {% for productoDeseado in carritoDeCompras %} 
+        <tr>
+            <td>{{productoDeseado.2}}</td>
+            <td>{{productoDeseado.3}} </td>
+            <td>{{productoDeseado.4}} </td>
+            <td>{{productoDeseado.5}} </td>
+            <td>{{productoDeseado.7}} </td>   
+            <td>$&nbsp;{{productoDeseado.6}} </td>
+            <form action="{% url 'crearpedido' %}" method="POST"> 
+                {% csrf_token %}                  
+                    <td>
+                        <button type="submit" id="btnElimDelCarro" name="btnElimDelCarro" class="btn btn-danger" value={{forloop.counter0}}>Quitar</button>
+                    </td>
+            </form>        
+              
+         
+
+                {% empty %}
+                <h2 style="color: rgb(0, 128, 100); font-size: x-large; margin: auto;
+                text-align: center;
+                font-weight: bold; padding: 20px;">Agregue productos al carrito de compras para poder realizar el pedido.</h2>
+            </tr>
+                {% endfor %}
+            
+            
+        </tbody>
+      </table>
+      {% if carritoDeCompras %}
+
+      <div class="formularioPago"><a href="{% url 'mostrarpedidonuevo' %}" class="btn btn-success btn-block">HACER PEDIDO</a></div>
+      {% endif %}
+    </div>
+
+{% else %}
+<h1 id="mensaje" >Usted no esta autorizado para estar en este lugar</h1>
+{% endif %}
+{% endblock %}

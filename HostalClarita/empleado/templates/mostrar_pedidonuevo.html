@@ -1,0 +1,67 @@
+{% extends 'plantilla_empleado.html' %} {% load widget_tweaks %}    {% load mathfilters %}
+
+{% block title %}Empleado{% endblock title %}
+
+{% block content %}
+{% if user.is_empleado == True or user.is_superuser%}
+
+<h1 id="titulo">ORDEN DE PEDIDO NÚMERO: {{idop|floatformat}}</h1> 
+<div id="space"></div>  
+<h2>Su orden de pedido ha sido creada con éxito, si desea puede enviarlo al proveedor o ir al administrador de pedidos para modificarla o eliminarla.</h2>
+<h3>Proveedor: {{datosProveedor}}</h3>
+<h2>Solicitante: {{datosSolicitante}}</h2>
+      <h1 id="titulo">Detalle de productos</h1> 
+      <table class="table table-striped table-bordered" name="tablaPediNuevo" id="tablaPediNuevo">
+        <thead>
+            <tr>
+                <th>Código Producto</th>
+                <th>Nombre</th> 
+                <th>Cantidad</th> 
+                <th>Total</th>    
+        </thead>
+        <tbody>
+            {% for productoDeseado in dataPedido %} 
+        <tr>
+            <td>{{productoDeseado.1}}</td>
+            <td>{{productoDeseado.2}} </td>
+            <td>{{productoDeseado.7}} </td>   
+            <td>$&nbsp;{{productoDeseado.6}} </td>              
+         
+
+                {% empty %}
+                <h2 style="color: red; font-size: x-large; margin: auto;
+                text-align: center;
+                font-weight: bold; padding: 20px;">Ha ocurrido un error al detallar los productos.</h2>
+            </tr>
+                {% endfor %}
+
+</table>
+<div style="text-align: center;">
+    <h1>TOTAL A PAGAR: $ {{valorTotal}}</h1>
+
+
+
+
+<form action="{% url 'administrarpedido' %}" method="POST"> 
+    {% csrf_token %}                  
+            <button type="submit" id="btnAdminPedido" name="btnAdminPedido" class="btn btn-info" >Ir al administrador de pedidos</button>
+</form> 
+<br>
+
+<form action="{% url 'administrarpedido' %}" method="POST"> 
+    {% csrf_token %}                  
+            <button type="submit" id="btnEnviarPedido" name="btnEnviarPedido" class="btn btn-success" value={{idop|floatformat}} >Enviar al Proveedor</button>
+</form> 
+<br>
+        <button onclick="window.print()" class="btn btn-secondary">Imprimir el pedido</button>
+
+</div>
+<div id="space"></div>  
+
+
+
+
+{% else %}
+<h1 id="mensaje" >Usted no esta autorizado para estar en este lugar</h1>
+{% endif %}
+{% endblock %}

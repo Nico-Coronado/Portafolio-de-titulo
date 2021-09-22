@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/styles_cliente.css' %}">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="{% url 'portadacliente' %}">Hostal Doña Clarita</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li><a href="{% url 'infohabitaciones' %}">Habitaciones</a></li>
+            <li><a href="{% url 'infocomedores' %}">Comedores</a></li>
+            <li><a>|</a></li>            
+            <li><a href="{% url 'cliente-habitacion' %}">Reservar Habitaciones</a></li>
+            <li><a href="{% url 'habitacion-planilla' %}">Reservar Habitaciones por planilla</a></li>
+            <li><a>|</a></li>
+            <li><a href="{% url 'cliente-comedor' %}">Menús Semanales</a></li>
+            <li><a href="{% url 'cliente-compras' %}">Mis compras</a></li>
+            {%if user.is_superuser %}
+            <li ><a style="color: gold;" href="{% url 'portadaadmin' %}">Volver a la Administración general</a></li>
+            {%endif%}
+          </ul>
+          <!-- -->
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="#">
+                <form action = "{% url 'actualizar-moneda' %}" method = "POST" >
+                {% csrf_token %}
+                <p>Moneda:  
+                  <select id="sltTipoMoneda" name="sltTipoMoneda" style="color: green;" onchange="this.form.submit()">
+                    <option  disabled selected>Cambiar divisa</option>
+                    <option value="0">Pesos Chilenos</option>
+                    <option value="81">Dólares</option>
+                    <option value="82">Euros</option>
+                  </select>
+                </p>
+                </form>
+            </a>
+            </li>      
+          <!-- -->  
+            <li><a href="{% url 'ayudacliente' %}">Soporte</a></li>    
+            <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> Cerrar Sesion</a></li>
+          </ul>
+        </div>
+      </nav>
+      {% if messages %}
+      <ul class="messages">
+          {% for message in messages %}
+          <div class="alert alert-{{ message.tags }}" role="alert">
+              <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>&nbsp;{{ message }}</li>
+          </div>
+          {% endfor %}
+      </ul>
+      {% endif %}
+      <div style="padding: 5px;"></div>
+      <div class="container box">
+        {% block content %}
+        {% endblock %}
+      </div>
+      <br>
+      <div style="text-align: center;">
+
+        <footer style="width: 100%;">
+          <p>© 2021 Hostal Doña Clarita. Todos los derechos reservados. | &nbsp;<a href="{% url 'abouthostalclarita' %}">Acerca del Hostal Doña Clarita</a>&nbsp; | <a href="{% url 'politicaprivacidad' %}">Política de Privacidad y Uso</a> |
+        </footer>
+      </div>
+
+      <script
+src="https://code.jquery.com/jquery-3.6.0.js"
+integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.print.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+<script src="{% static 'js/clientefunctions.js' %}"></script>
+
+</body>
+</html>

@@ -1,0 +1,109 @@
+{% extends 'plantilla.html' %}
+
+{% block title %}Hostal Doña Clarita - Estadistica{% endblock title %}
+
+{% block content %}
+{% if user.is_superuser %}
+<h1 id=titulo>VISITAS DEL SITIO WEB</h1>
+<table class="table table-striped table-bordered" name="tablaVisitas" id="tablaVisitas">
+    <thead>
+        <tr>
+            <th>Cantidad de visitas del mes</th>
+            <th>Total visitas del mes por dirección IP</th> 
+            <th>Cantidad de visitas del año</th> 
+            <th>Total de visitas del Año por dirección IP</th> 
+            <th>Fecha Actual</th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{visitasDelMes.0}}</td>
+        <td style="color: green;">{{visitasMesIP.0}} </td>
+        <td>{{visitasAnuales.0}} </td>  
+        <td style="color: green;">{{visitasAnualIP.0}} </td>       
+        <td>{{fechaActual}} </td>       
+    </tr>           
+        
+        
+    </tbody>
+</table>
+
+<h1 id="titulo">GANANCIAS GENERADAS DEL MES Y AÑO</h1> 
+<table class="table table-striped table-bordered" name="tablaGanancias" id="tablaGanancias">
+    <thead>
+        <tr>
+            <th>Cantidad de facturas del mes</th>
+            <th>Total ganacias del mes</th> 
+            <th>Cantidad de facturas del año</th> 
+            <th>Total ganacias del Año</th> 
+            <th>Fecha Actual</th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{facturasDelMes.0}}</td>
+        {% if totalGanadoMes.0 != None %}
+        <td style="color: green;">{{totalGanadoMes.0}} </td>
+
+        {%else %}
+        <td style="color: green;">0</td>
+        {% endif %}
+        <td>{{facturasAnuales.0}} </td>  
+        {% if totalGanadoAnual.0 != None %}
+        <td style="color: green;">{{totalGanadoAnual.0}} </td>       
+
+        {%else %}
+        <td style="color: green;">0</td>
+        {% endif %}
+        
+
+        <td>{{fechaActual}} </td>       
+        </tr>
+    </tr>           
+        
+        
+    </tbody>
+</table>
+
+
+<h1 id="titulo">GASTOS GENERADOS DEL MES Y AÑO</h1> 
+<table class="table table-striped table-bordered" name="tablaGastos" id="tablaGastos">
+    <thead>
+        <tr>
+            <th>Cantidad de pedidos del mes</th>
+            <th>Total gastos del mes</th> 
+            <th>Cantidad de pedidos del año</th> 
+            <th>Total gastos del Año</th> 
+            <th>Fecha Actual</th>
+            </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{pedidosDelMes.0}}</td>
+        {% if totalGastadoMes.0 != None %}
+        <td style="color: red;">{{totalGastadoMes.0}} </td>
+
+        {%else %}
+        <td style="color: red;">0</td>
+        {% endif %}
+        <td>{{pedidosAnuales.0}} </td> 
+        {% if totalGastadoAnual.0 != None %}
+        <td style="color: red;">{{totalGastadoAnual.0}} </td>       
+
+        {%else %}
+        <td style="color: red;">0</td>
+        {% endif %} 
+        <td>{{fechaActual}} </td>       
+        </tr>
+    </tr>           
+        
+        
+    </tbody>
+</table>
+
+
+
+{% else %}
+<h1 id="mensaje" >Usted no esta autorizado para estar en este lugar</h1>
+{% endif %}
+{% endblock %}

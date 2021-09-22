@@ -1,0 +1,26 @@
+{% extends 'plantilla.html' %} {% load widget_tweaks %}
+
+{% block title %}Hostal Doña Clarita - Plato{% endblock title %}Habitacion
+
+{% block content %}
+{% if user.is_superuser %}
+<h1 id="titulo">Sistema del Hostal Doña Clarita</h1> 
+       
+    <div>
+        <p style="text-align: center; font-size: x-large;" >Presionando el botón "actualizar hostal" usted asignará todas las reservas a su correspondiente habitación acorde al día de hoy, y se liberarán las habitaciones que terminen el hospedaje el día de hoy.</p>
+    </div>
+    <div id="space"></div>
+
+    <div style="text-align: center;">
+    <form name="formActualizarHostal" id="formActualizarHostal" method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-success btn-lg btn-block" id="btnActualizarHostal" name="btnActualizarHostal">ACTUALIZAR EL HOSTAL</button>
+    </form>
+    </div>
+    <div id="space"></div>
+
+
+{% else %}
+<h1 id="mensaje" >Usted no esta autorizado para estar en este lugar</h1>
+{% endif %}
+{% endblock %}

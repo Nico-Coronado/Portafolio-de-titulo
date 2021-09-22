@@ -1,0 +1,51 @@
+{% extends 'plantilla.html' %} 
+
+{% block title %}Hostal Doña Clarita - Facturas{% endblock title %}
+
+{% block content %}
+{% if user.is_superuser %}
+
+<h1 id="titulo">FACTURAS</h1>
+<table class="table table-striped table-bordered" id="tablaFactura" name="tablaFactura">
+    <thead>
+    <tr>
+        <th>Numero de factura</th>
+        <th>Orden de compra</th>
+        <th>Fecha de emision </th>
+        <th>Valor bruto </th>
+        <th>Valor neto </th>
+        <th>Precio total </th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    
+    <tbody>
+        {% for elemento in facturas %} 
+    <tr>
+        <td>{{elemento.0}}</td>
+        <td>{{elemento.5}}</td>
+        <td>{{elemento.1}}</td>
+        <td>{{elemento.2}}</td>
+        <td>{{elemento.3}}</td>
+        <td>{{elemento.4}}</td>
+
+        <td>  <a href="{% url 'compra-detalle' elemento.0 %}" class="btn btn-info">Ver Factura</a> 
+              <a href="{% url 'facturas-borrar' elemento.0 %}" class="btn btn-danger">Eliminar factura</a> 
+        </td>
+          
+
+        {% empty %}
+        <h4 style="font-weight: bold; text-align: center;">NO EXISTEN FACTURAS PARA MOSTRAR</h4>
+       
+    </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+
+
+{% else %}
+<h1 id="mensaje" >Usted no esta autorizado para estar en este lugar</h1>
+{% endif %}
+{% endblock %}

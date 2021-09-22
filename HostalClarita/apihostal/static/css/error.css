@@ -1,0 +1,15 @@
+html, body {
+    background-image: url("../images/errorcode.jpg");
+	background-repeat: no-repeat;
+}
+
+.divContenido {
+	width: 980px;
+	height: 750px;
+	position: absolute;
+    top: 15%;
+    left: 23.5%;
+
+    background-color: #ffffff;
+
+}

@@ -1,0 +1,28 @@
+{% load static %} {% load widget_tweaks %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/styles_crud.css' %}">
+    <title>Hostal Doña Clarita - Borrar plato</title>
+</head>
+<body>
+<div class="center">
+<div class = "box">
+    <h2>¿Desea borrar el plato? {{item.id}} ?</h2>
+    <form action="{% url 'plato-eli' item.id %}" method="POST">
+        {% csrf_token %}
+
+
+    <div id="space"></div>
+    <button type="submit" class="btn btn-danger" >Si, Borrar</button>
+    <a href="{% url 'admin-plato' %}" class="btn btn-primary">Cancelar</a>
+    </form>
+</div>
+</div>
+
+</body>
+</html>

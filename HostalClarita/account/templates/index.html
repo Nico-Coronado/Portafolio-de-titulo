@@ -1,0 +1,44 @@
+{% load static %} 
+<!DOCTYPE html>
+<html>
+<head>
+<title>Hostal</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="{% static 'css/stylesindex.css' %}">
+
+</head>
+<body>
+<div class="bgimg w3-display-container w3-animate-opacity w3-text-white ">
+    <div style=" background:rgba(255, 255, 255,.5); ">
+    <nav class="navbar navbar-dafault">
+        <div class="container-fluid">
+            <div class="navbar-header">
+            <a class="navbar-brand" style="color: black; font-weight: bold;"><span class="glyphicon glyphicon-home" ></span>&nbsp;<strong>Doña Clarita</strong></a>
+            </div>
+            <ul class="nav navbar-nav">
+              <li><a href="{% url 'abouthostalclarita' %}" style="color: black; font-weight: bold;"><span class="glyphicon glyphicon-tree-deciduous" ></span> Acerca del hostal</a></li>
+            </ul>
+              
+            <ul class="nav navbar-nav navbar-right" >
+            <li><a href="{% url 'cliente_register' %}" style="color: black; font-weight: bold;"><span class="glyphicon glyphicon-user" ></span> Registrarse</a></li>
+            <li><a href="{% url 'login' %}" style="color: black; font-weight: bold;"><span class="glyphicon glyphicon-log-in"></span> Iniciar sesión</a></li>
+            </ul>
+        </div>
+    </nav>
+    </div>
+  <div class="w3-display-middle"  >
+    <h1 class="w3-jumbo w3-animate-top" style="font-weight: bold;">Bienvenidos</h1>
+    <hr class="w3-border-grey" style="margin:auto;width:40%">
+    <p class="w3-large w3-center" style="font-weight: bold;">Hostal para empresas</p>
+  </div>
+
+</div>
+
+
+</body>
+</html>

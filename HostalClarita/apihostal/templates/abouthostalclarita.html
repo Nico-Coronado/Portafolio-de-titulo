@@ -1,0 +1,68 @@
+{% load static %} 
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+
+    <title>Hostal Doña Clarita</title>
+</head>
+<body>
+  <br>
+<div class="container">
+  <div class="jumbotron">
+    <div style="text-align: center;"> 
+      <h1>Hostal Doña Clarita</h1>
+
+    </div>
+
+    <p style="text-align: justify;">
+
+      El Hostal Doña Clarita se encuentra ubicado en Francisco Corral 297, la ciudad de Chonchi, en la Isla grande de Chiloé, 
+      es una empresa familiar dedicada al alojamiento y servicio de comedor para empresas. 
+      Ha pasado de generación en generación por más de 100 años.       </p>
+      
+      <p style="text-align: justify;">
+      
+      Su fundadora fue Doña Clarita Machuca Montgomery (nácida en día 5 de Junio del año 1812 y fallecida el día 10 de noviembre de 1907), 
+      ella vivió en un tiempo en dónde a la mujer no se le incluía en el mundo laboral. Sin embargo, 
+      eso no detuvo su inquebrantable espirítu y siguió adelante con sus sueños. 
+      Con la ayuda de su ilustrado padre, Arturo Machuca de San Martin, ella creó el hostal y lo administró. 
+      Durante gran parte de la vida de Doña Clarita Machuca, su hostal siempre estuvo legalmente bajo el nombre de su padre, 
+      hasta que este falleció y le heredó a su querida hija el hostal. Aunque Doña Clarita haya heredado el hostal que legalmente era de su padre,
+       en esencia el hostal siempre fue de ella. Luego en 1903, cuando ya el trabajo femenino industrial en Chile estaba establecido, 
+       ella contrataba a mujeres cuando ya pocas empresas se atrevían. Doña Clarita fue y será por siempre una mujer ejemplar,
+        que estando llena de restricciones, siguió moviendose para adelante hasta que pudo cumplir todo lo que se propuso.  </p> 
+      
+      <p style="text-align: justify;">Su actual dueña es Doña Clarita Elvira Cochrane Machuca (nácida un 7 de Junio del año 1977),
+       licenciada en ingeniería comercial de la Pontificia Universidad Católica de Chile. Ella es una descendiente 
+       directa de la familia Machuca Montgomery.    </p> 
+       <div style="text-align: center;">
+        <img src="../static/images/claritahostal2.jpg" alt="Hostal Clarita">
+      
+      </div>
+            
+     <h2>Datos de contacto:</h2> 
+      
+      <p>Dirección: Francisco Corral 297, Chonchi, Los Lagos</p>
+      <p>Correo electrónico: contacto@hostalclarita.cl</p>
+      <p>Teléfono de contacto Hostal: (9) 9553 9757 (65) 253 8000</p>
+
+      <button class="btn btn-success btn-lg" onclick="volverAtras()"><b>Volver a la página anterior</b></button>&nbsp;
+  </div>
+</div>
+
+
+      <div style="text-align: center;">
+
+        <footer style="width: 100%;">
+          <p>© 2021 Hostal Doña Clarita. Todos los derechos reservados. | <a href="{% url 'politicaprivacidad' %}">Política de Privacidad y Uso</a> |
+        </footer>
+      </div>
+      <script src="{% static 'js/paginaerror.js' %}"></script>
+ 
+</body>
+</html>

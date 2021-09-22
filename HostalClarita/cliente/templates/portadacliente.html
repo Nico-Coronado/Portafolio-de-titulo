@@ -1,0 +1,27 @@
+{% extends 'plantilla_cliente.html' %} {% load widget_tweaks %}    {% load mathfilters %}
+
+{% block title %}Cliente{% endblock title %}
+{% block content %}
+{% if user.is_cliente == True or user.is_superuser %}
+    <h1 id="titulo">Hostal Doña Clarita</h1> 
+
+    {% if user.is_cliente %}
+    <H1>Bienvenida Empresa {{nombreCliente}}</H1>
+    {% elif user.is_superuser %}
+    <H1>Bienvenido administrador {{nombreCliente}}</H1>
+    {% endif %}
+
+        <h3>En esta plataforma usted puede solicitar y pagar la estadía de sus empleados. También puede ver los precios que tiene nuestros servicios de comedor.</h3>
+        <br>
+        <div style=" text-align: center">
+            <img src="../static/images/claritahostal1.jpg" alt="Una linda habitación">
+        </div>
+  
+    <div id="space"></div>
+
+
+{% else %}
+    <h1 id="mensaje" >Usted no esta autorizado para estar en este lugar</h1>
+{% endif %}
+
+{% endblock %}

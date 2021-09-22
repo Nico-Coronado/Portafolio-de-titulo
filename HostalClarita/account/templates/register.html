@@ -1,0 +1,84 @@
+{% load static %} 
+{% if user.is_superuser %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>Registro</title>
+</head>
+<body>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="{% url 'portadaadmin' %}">Hostal Doña Clarita</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li><a href="{% url 'admin-habitacion' %}">Habitaciones</a></li>
+        <li><a href="{% url 'admin-huespedesa' %}">Huéspedes actuales</a></li>
+        <li><a href="{% url 'admin-huesped' %}">Libro de huéspedes</a></li>
+        <li><a href="{% url 'admin-facturas' %}">Facturas</a></li>
+        <li><a>|</a></li>
+        <li><a href="{% url 'admin-comedor' %}">Comedores</a></li>
+        <li><a href="{% url 'admin-plato' %}">Platos</a></li>
+        <li><a>|</a></li>
+        <li><a href="{% url 'admin-pedidos' %}">Pedidos</a></li>
+        <li><a href="{% url 'listaproductos' %}">Productos</a></li>
+        <li><a href="{% url 'admin-famip' %}">Familias de productos</a></li>
+        <li><a>|</a></li>
+        <li><a href="{% url 'admin-moneda' %}">Monedas</a></li>
+        <li><a href="{% url 'admin-estadistica' %}">Estadisticas</a></li>
+       
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="{% url 'ayudaadministrador' %}">Soporte</a></li>    
+        <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> Cerrar Sesion</a></li>
+      </ul>
+    </div>
+
+
+    <div class="container-fluid">
+        <div class="navbar-header">
+          <a  class="navbar-brand" disabled>&nbsp;&nbsp;&nbsp;Administración&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+        <ul class="nav navbar-nav">     
+          <li><a style="color: rgb(122, 201, 238);" href="{% url 'empleado' %}">Módulo Empleado</a></li>
+          <li><a style="color: rgb(255, 105, 97);" href="{% url 'proveedor' %}">Módulo Proveedor</a></li>         
+          <li><a style="color: rgb(119, 221, 119);" href="{% url 'portadacliente' %}">Módulo Cliente</a></li> 
+          <li><a>|</a></li>        
+          <li><a style="color: rgb(253, 253, 150);" href="{% url 'sistemahostal' %}">Sistema Hostal</a></li>  
+          <li><a>|</a></li>        
+          <li><a href="{% url 'register' %}">Registrar Usuarios</a></li>
+        </ul>
+      </div>
+      
+  </nav>
+  
+<div class="center">
+<div class = "box">
+    <h2>Registrar a un: </h2>
+    <div id="space"></div>
+    <a href = "{% url 'cliente_register' %}"
+    <button type="button" class="btn btn-primary btn-block"   >Cliente</button>
+    </a>
+    <div id="space"></div>
+    <a href = "{% url 'proveedor_register' %}"
+    <button type="button" class="btn btn-primary btn-block" >Proveedor</button>
+    </a>
+    <div id="space"></div>
+    <a href = "{% url 'empleado_register' %}"
+    <button type="button" class="btn btn-primary btn-block" >Empleado</button>
+    </a>
+</div>
+</div>
+{% else %}
+<h1 id="mensaje" >Usted no esta autorizado para estar en este lugar</h1>
+{% endif %}
+</body>
+
+</html>

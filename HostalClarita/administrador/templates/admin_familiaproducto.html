@@ -1,0 +1,175 @@
+{% extends 'plantilla.html' %} {% load widget_tweaks %}
+
+{% block title %}Hostal Doña Clarita - Familia del producto{% endblock title %}
+
+
+
+
+{% block listacrud %} 
+    <div class="container">
+        <h1 id='titulo'>Todas las familias de productos</h1>
+        <table class="table table-striped table-bordered">
+            <thead>
+            <tr>
+                <th>ID Familia Producto</th>
+                <th>Nombre Familia Producto</th>          
+            </tr>
+            </thead>            
+            <tbody>  
+                {% for familiap in familiaprod_objs %}                   
+                    <tr>
+                        <td> {{ familiap.id|upper }}</td>    
+                        <td> {{ familiap.nombre_familiap|upper }}</td>
+                    </tr>
+                    {% empty %}
+                    <h2 style="color: red; font-size: x-large; margin: auto;
+                    text-align: center; font-weight: bold; padding: 20px;">
+                        NO HAY MONEDAS
+                    </h2>    
+                {% endfor %}  
+            </tbody>
+        </table>
+    
+<div style="text-align: center;">
+        <div class="pagination">
+            <span class="step-links">
+                {% if familiaprod_objs.has_previous %}
+                    <a class="btn btn-primary" href="?page=1">&laquo; Primero</a>
+                    <a class="btn btn-info" href="?page={{ familiaprod_objs.previous_page_number }}">Anterior</a>
+                {% endif %}
+        
+                <span class="current">
+                    Página {{ familiaprod_objs.number }} de {{ familiaprod_objs.paginator.num_pages }}.
+                </span>
+        
+                {% if familiaprod_objs.has_next %}
+                    <a class="btn btn-info" href="?page={{ familiaprod_objs.next_page_number }}">Siguiente</a>
+                    <a class="btn btn-primary" href="?page={{ familiaprod_objs.paginator.num_pages }}">Último &raquo;</a>
+                {% endif %}
+            </span>
+        </div>  
+    </div>
+</div>
+
+{% endblock listacrud %}
+
+
+{% block content %}
+{% if user.is_superuser %}
+    <h1 id='titulo'> Crear </h1>
+    <b></b>
+    <div class="formulario">
+    <form action = "{% url 'admin-famip' %}" method = "POST" >
+        {% csrf_token %}
+        {% for field in form.visible_fields %}
+            <div class="form-group">
+                {{ field.label_tag }}
+                {% render_field field class="form-control" %}
+                    
+            </div>
+
+        
+        {% endfor %}
+
+        <div id="space"></div>
+        <button type="submit" name="btnAgregarFamilia" id="btnAgregarFamilia" class="btn btn-primary btn-block" >Agregar Familia de Productos</button>
+        <br>
+        
+        {% if messages %}
+    <!-- <ul class="messages">
+        {% for message in messages %}
+            <script>alert(" {{ message}} ")</script>
+        {% endfor %}
+    </ul>     -->
+
+      {% endif %}
+    </form>
+    </div>
+
+    <h1 id='titulo'>Leer</h1>
+    
+    <div class="formulario"> 
+        <form action="{% url 'admin-famip' %}" method="post">
+            {% csrf_token %}
+            {% for field in formLeer.visible_fields %}
+            <div class="form-group">
+                {{ field.label_tag }}
+                {% render_field field class="form-control" %}
+                    
+            </div>
+            
+            
+        
+        {% endfor %}
+        <button class="btn btn-primary btn-block" type="submit">Buscar</button>
+        <br>
+        <div class="panel panel-default">
+            <div class="panel-heading">Resultado Busqueda</div>
+            <div class="panel-body">
+              {{productFame}}
+            </div>
+          </div>
+    
+            
+        </form>
+
+
+        
+    </div>     
+    <h1 id='titulo'>Actualizar</h1>
+    <div class="formulario">
+        <form action="{% url 'admin-famip' %}" method="post">
+            {% csrf_token %}
+            {% for field in formActua.visible_fields %}
+            <div class="form-group">
+                {{ field.label_tag }}
+                {% render_field field class="form-control" %}
+                    
+            </div>
+            
+
+            
+            
+        
+        {% endfor %}
+        <button class="btn btn-primary btn-block" id="btnActuFamilia" name="btnActuFamilia" type="submit">Actualizar</button>
+    
+            
+        </form>
+
+
+    </div>
+<h1 id='titulo'>Eliminar</h1>
+<div class="formulario">
+    <form action="{% url 'admin-famip' %}" method="post">
+        {% csrf_token %}
+        {% for field in formEli.visible_fields %}
+        <div class="form-group">
+            {{ field.label_tag }}
+            {% render_field field class="form-control" %}
+                
+        </div>
+        
+
+        
+        
+    
+    {% endfor %}
+    <button class="btn btn-primary btn-block" type="submit">Eliminar</button>
+
+        
+    </form>
+
+
+</div>
+
+
+
+
+
+{% else %}
+<h1 id="mensaje" >Usted no esta autorizado para estar en este lugar</h1>
+{% endif %}
+{% endblock %}
+
+</div>

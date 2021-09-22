@@ -1,0 +1,66 @@
+{% extends 'plantilla.html' %} {% load widget_tweaks %}
+
+{% block title %}Hostal Doña Clarita - Habitacion{% endblock title %}
+
+{% block content %}
+{% if user.is_superuser %}
+<h1 id="titulo">AGREGAR HABITACIONES</h1> 
+<div id="space"></div>
+<div class="formulario">
+    <form action = "{% url 'admin-habitacion' %}" method = "POST"  >
+        {% csrf_token %}
+        {% for field in form.visible_fields %}
+        <div class="form-group">
+            {{ field.label_tag }}
+            {% render_field field class="form-control" %}
+        </div>
+    {% endfor %}
+    <div id="space"></div>
+    <button type="submit" class="btn btn-primary btn-block" >Agregar habitacion</button>
+    </form>
+</div>
+
+    <h1 id="titulo">LISTA DE HABITACIONES</h1> 
+    <table class="table table-striped table-bordered" id="tablaHabi" name="tablaHabi">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Numero de habitacion</th>
+            <th>Descripcion</th>
+            <th>Disponibilidad</th>
+            <th>Precio</th>
+            <th>Accion</th>
+        </tr>
+        </thead>
+        
+        <tbody>
+            {% for elemento in lista %} 
+        <tr>
+        
+            <td>{{elemento.0}}</td>
+            <td>{{elemento.1}}</td>
+            <td>{{elemento.2}} </td>
+            {% if elemento.3 == 0 %}
+                <td>Disponible </td>
+            {% elif elemento.3 == 1 %}
+                <td>No esta disponible por estar en mantenimiento </td>
+            {% elif elemento.3 == 2 %}
+                <td>No esta disponible por estar asignado a la empresa </td>
+            {% endif %}
+            <td>{{elemento.4}} </td>
+            <td><a class="btn btn-danger" href="{% url 'habitacion-borrar' elemento.0 %}">Elim.</a>
+                <a class="btn btn-warning" href="{% url 'habitacion-actualizar' elemento.0 %}">Act.</a> </td>
+            {% empty %}
+    <h2 style="color: red; font-size: x-large; margin: auto;
+    text-align: center;
+     font-weight: bold; padding: 20px;">NO EXISTEN HABITACIONES EN EL HOSTAL</h2> 
+        </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div id="space"></div>
+
+{% else %}
+<h1 id="mensaje" >Usted no esta autorizado para estar en este lugar</h1>
+{% endif %}
+{% endblock %}

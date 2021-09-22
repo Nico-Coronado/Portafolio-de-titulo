@@ -1,0 +1,24 @@
+{% extends 'plantilla_proveedor.html' %}
+
+{% block title %}Proveedor{% endblock title %}
+
+{% block content %}
+{% if user.is_proveedor == True or user.is_superuser %}
+<h1 id="titulo">Hostal Doña Clarita</h1> 
+{% if user.is_proveedor %}
+    <H1>Bienvenido empresa {{nombreProveedor}}</H1>
+{% elif user.is_superuser %}
+    <H1>Bienvenida administrador {{nombreProveedor}}</H1>
+{% endif %}
+    <h3>En esta plataforma usted puede generar los productos que venderá al hostal. También puede administrar todos los pedidos que nuestro hostal le haya solicitado. </h3>
+    <br>
+    <div style=" text-align: center">
+        <img src="../static/images/inventario.jpg" alt="Productos en bodega">
+    </div>
+<div id="space"></div>
+<div id="space"></div>
+
+{% else %}
+<h1 id="mensaje" >Usted no esta autorizado para estar en este lugar</h1>
+{% endif %}
+{% endblock %}

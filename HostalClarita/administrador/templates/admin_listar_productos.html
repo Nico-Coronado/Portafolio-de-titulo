@@ -1,0 +1,53 @@
+{% extends 'plantilla.html' %} 
+
+{% block title %}Hostal Doña Clarita - Productos{% endblock title %}
+
+{% block content %}
+{% if user.is_superuser %}
+<h1 id="titulo">LISTA DE PRODUCTOS</h1> 
+    <table class="table table-striped table-bordered" id="tablaTodoProdus" name="tablaTodoProdus">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Codigo del producto</th>
+            <th>Nombre del producto</th>
+            <th>Marca del producto</th>
+            <th>Descripcion del producto</th>
+            <th>Fecha de vencimiento</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Stock critico</th>
+            <th>ID del proveedor</th>
+            <th>Familia del producto</th>
+        </tr>
+        </thead>
+        
+        <tbody>
+
+            {% for elemento in lista %} 
+            <tr>
+
+            <td>{{elemento.0}}</td>
+            <td>{{elemento.1}}</td>
+            <td>{{elemento.2}} </td>
+            <td>{{elemento.3}} </td>
+            <td>{{elemento.4}} </td>
+            <td>{{elemento.5}} </td>
+            <td>{{elemento.6}} </td>
+            <td>{{elemento.7}} </td>
+            <td>{{elemento.8}} </td>
+            <td>{{elemento.14}} </td>
+            <td>{{elemento.12}} </td>
+            
+            {% empty %}
+    <h2 style="color: red; font-size: x-large; margin: auto;
+    text-align: center;
+     font-weight: bold; padding: 20px;">NO LE ESTÁN VENDIENDO PRODUCTOS AL HOSTAL</h2> 
+        </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+<h1 id="mensaje" >Usted no esta autorizado para estar en este lugar</h1>
+{% endif %}
+{% endblock %}

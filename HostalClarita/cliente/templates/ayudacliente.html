@@ -1,0 +1,81 @@
+{% extends 'plantilla_cliente.html' %} {% load widget_tweaks %}    {% load mathfilters %}
+
+{% block title %}Cliente{% endblock title %}
+{% block content %}
+{% if user.is_cliente == True or user.is_superuser %}
+  
+<h1 id="titulo">SOPORTE DEL HOSTAL CLARITA</h1> 
+<p style="text-align: center; font-size: x-large;" >Este manual de ayuda sirve para cada una de las funciones que usted puede ver en la barra de navegación superior. Haga click en el manual que le interese y se desplegará la explicación.</p>
+<h2 id="titulo">¿Con qué necesitas ayuda?</h2> 
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="headingOne"  style="text-align: center;">
+        <h4 class="panel-title"  >
+          <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Manual sistema de Reserva de Habitaciones
+          </a>
+        </h4>
+      </div>
+      <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+        <div class="panel-body">
+            En este sistema usted puede solicitar una estadia que le presentará una tabla con fechas en las cuales deberá seleccionar los
+            dias que quiera ir, estos dias solo pueden ser de atrás para delante, una vez presione el botón consultar se le desplegará una tabla inferior llamada
+            Tus huéspedes, donde puede ver el nombre de su empresa el numero de habitación, las fechas de inicio y salida y el precio, tendrá un boton de acción a 
+            la derecha donde va a poder eliminar su consulta en caso de no querer la habitacion o querer mas dias. Por ultimo también aparecerá el botón de pagar donde una vez proceda al pago, 
+            le dara una factura electrónica con la información de la compra.
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div  class="panel-heading" style="text-align: center;" role="tab" id="headingTwo">
+        <h4 class="panel-title">
+          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            Manual Sistema de Huéspedes por Planilla
+          </a>
+        </h4>
+      </div>
+      <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+        <div class="panel-body">
+            Sistema en dónde usted puede agregar una planilla con los huéspedes que quiere ingresar al hostal. En el mismo sistema, se encuentran las instrucciones sobre como descargar y subir la planilla a nuestra página web.
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading" style="text-align: center;" role="tab" id="headingThree">
+        <h4 class="panel-title">
+          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            Manual Sistema Menú de Comedores
+        </a>
+        </h4>
+      </div>
+      <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+        <div class="panel-body">
+            En este sistema usted podrá seleccionar nuestros comedores, al momento de seleccionar se le va a desplegar en la parte inferior
+            una tabla con la minuta semanal del comedor, en donde usted va a ver nombre, hora y precio de los platos del comedor.
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading" style="text-align: center;" role="tab" id="headingFour">
+          <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                Manual Sistema Historial de Compras (Pestaña "Mis Compras")
+            </a>
+          </h4>
+        </div>
+        <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+          <div class="panel-body">
+            En este sistema usted puede ver todas las compras que ha realizado en nuestro hostal. Puede ver la factura con su respectivo detalle.
+          </div>
+        </div>
+      </div>
+</div>
+
+<div id="space"></div>
+
+
+{% else %}
+    <h1 id="mensaje" >Usted no esta autorizado para estar en este lugar</h1>
+{% endif %}
+
+{% endblock %}

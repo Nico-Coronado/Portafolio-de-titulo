@@ -1,0 +1,33 @@
+{% load static %} {% load widget_tweaks %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>Registro cliente</title>
+</head>
+<body>
+
+<div class="center">
+<div class = "box">
+    <h2> Registrandose como cliente: </h2>
+    <form action = "{% url 'cliente_register' %}" method = "POST" novalidate>
+    {% csrf_token %}
+    {% for field in form.visible_fields %}
+        <div class="form-group">
+            {{ field.label_tag }}
+            {% render_field field class="form-control" %}
+                {% for error in field.errors %}
+                    <span style="color:red;">{{ error }}</span>
+                {% endfor %}
+    {% endfor %}
+    <div id="space"></div>
+    <button type="submit" class="btn btn-primary btn-block" >Crear usuario</button>
+</div>
+</div>
+    
+</body>
+</html>

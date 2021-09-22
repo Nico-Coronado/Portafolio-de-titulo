@@ -1,0 +1,44 @@
+body{
+    margin: 0;
+    padding: 0;
+    background: #d1d4d6;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.center{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+}
+.box{
+    width: 1000px;
+    background-color: white;
+    border: 1px solid black;
+    padding: 35px;
+    margin: auto;
+    border-radius: 2px;
+    
+}
+
+#space{
+    padding-top:20px;
+}
+
+#titulo{
+    text-align: center;
+    padding:10px;   
+    font-weight: bold;
+}
+
+#datos-factura{
+    float: right;
+}
+.formulario{
+    padding: 20px;
+    width: 65%;
+    border-radius: 5px;
+    margin: auto;
+}

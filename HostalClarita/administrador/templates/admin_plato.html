@@ -1,0 +1,83 @@
+{% extends 'plantilla.html' %} {% load widget_tweaks %}
+
+{% block title %}Hostal Doña Clarita - Plato{% endblock title %}Habitacion
+
+{% block content %}
+{% if user.is_superuser %}
+<h1 id="titulo">AGREGAR PLATOS</h1>
+<div id="space"></div>
+<div class="formulario">
+    <form action = "{% url 'admin-plato' %}" method = "POST" >
+        {% csrf_token %}
+        {% for field in form.visible_fields %}
+            <div class="form-group">
+                {{ field.label_tag }}
+                {% render_field field class="form-control" %}
+                    
+            </div>
+        {% endfor %}
+        <!-- aqui va el comedor poblado -->
+        
+        
+
+        <div id="space"></div>
+    
+        <button type="submit" class="btn btn-primary btn-block" >Agregar plato</button>
+    </form>
+</div>
+
+    <h1 id="titulo">LISTA DE PLATOS</h1> 
+
+    <table class="table table-striped table-bordered" id="tablaPlato" name="tablaPlato">
+        <thead>
+        <tr>
+            <th>ID Plato</th>
+            <th>Comedor</th>
+            <th>Nombre Plato</th>
+            <th>Dia</th>
+            <th>Hora</th>
+            <th>Precio Plato</th>
+            <th>Accion</th>
+        </tr>
+        </thead>
+        
+        <tbody>
+            {% for elemento in listarPlatos %} 
+        <tr>
+        
+            <td>{{elemento.0}}</td>
+            <td>{{elemento.7}}</td>            
+            <td>{{elemento.1}} </td>
+            {% if elemento.2 == 1 %}
+                <td>Lunes </td>
+            {% elif elemento.2 == 2 %}
+                <td>Martes </td>
+            {% elif elemento.2 == 3 %}
+                <td>Miercoles</td>
+            {% elif elemento.2 == 4 %}
+                <td>Jueves</td>
+            {% elif elemento.2 == 5 %}
+                <td>Viernes</td>
+            {% elif elemento.2 == 6 %}
+                <td>Sabado</td>
+            {% elif elemento.2 == 7 %}
+                <td>Domingo</td>
+            {% endif %}
+            <td>{{elemento.3}} </td>
+            <td>{{elemento.4}} </td>
+            <td><a class="btn btn-danger" href="{% url 'plato-eli' elemento.0 %}">Elim.</a>
+            <a class="btn btn-warning" href="{% url 'plato-actu' elemento.0 %}">Actu.</a></td>
+            {% empty %}
+    <h2 style="color: red; font-size: x-large; margin: auto;
+    text-align: center;
+     font-weight: bold; padding: 20px;">NO HAY PLATOS DISPONIBLES</h2> 
+        </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div id="space"></div>
+
+{% else %}
+<h1 id="mensaje" >Usted no esta autorizado para estar en este lugar</h1>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'plantilla_empleado.html' %} {% load widget_tweaks %}    {% load mathfilters %}
+
+{% block title %}Empleado{% endblock title %}
+
+{% block content %}
+{% if user.is_empleado == True or user.is_superuser%}
+
+<h1 id="titulo">Hostal Doña Clarita</h1> 
+<div class="formulario">
+
+<H1>Bienvenido {{nombreEmpleado}}</H1>
+    <h3>En esta plataforma puede realizar pedidos a los distintos proveedores y administrarlos. </h3>
+    <br>
+    <div style=" text-align: center">
+        <img src="../static/images/productos.jpg" alt="Unos productos">
+    </div>
+</div>
+<div id="space"></div>
+<div id="space"></div>
+
+{% else %}
+<h1 id="mensaje" >Usted no esta autorizado para estar en este lugar</h1>
+{% endif %}
+{% endblock %}

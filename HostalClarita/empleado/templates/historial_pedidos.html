@@ -1,0 +1,151 @@
+{% extends 'plantilla_empleado.html' %} {% load widget_tweaks %}    {% load mathfilters %}
+
+{% block title %}Empleado{% endblock title %}
+
+{% block content %}
+{% if user.is_empleado == True or user.is_superuser%}
+<h1 id="titulo">PEDIDOS ACEPTADOS</h1> 
+<div id="space"></div>
+<table class="table table-striped table-bordered" name="tablaPediAceptados" id="tablaPediAceptados">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Fecha de Creación</th> 
+            <th>TOTAL</th> 
+            <th>Detalle</th>
+        </tr> 
+    </thead>
+    <tbody>
+        {% for pedidoCreado in lpedidosAceptados   %} 
+    <tr>
+        <td>{{pedidoCreado.0}}</td>
+        <td>{{pedidoCreado.1}} </td>
+        <td>$&nbsp;{{pedidoCreado.3}} </td>       
+        <form action="{% url 'mostrarpedido' %}" method="POST"> 
+            {% csrf_token %}                  
+                <td>
+                    <button type="submit" id="btnVerDetallePedido" name="btnVerDetallePedido" class="btn btn-info" value={{pedidoCreado.0}}>Ver Detalle</button>
+                </td>
+        </form>  
+            {% empty %}
+            <h2 style="color: green; font-size: x-large; margin: auto;
+            text-align: center;
+            font-weight: bold; padding: 20px;">No hay pedidos aceptados.</h2>
+            {% endfor %}
+    </tr>           
+        
+        
+    </tbody>
+</table>
+
+<h1 id="titulo">PEDIDOS POR RECEPCIONAR</h1> 
+<div id="space"></div>
+<table class="table table-striped table-bordered" id="tablaPediRecep" name="tablaPediRecep">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Fecha de Creación</th> 
+            <th>TOTAL</th> 
+            <th>Detalle</th> 
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for pedidoCreado in lpedidosEntregados   %} 
+    <tr>
+        <td>{{pedidoCreado.0}}</td>
+        <td>{{pedidoCreado.1}} </td>
+        <td>$&nbsp;{{pedidoCreado.3}} </td>       
+        <form action="{% url 'mostrarpedido' %}" method="POST"> 
+            {% csrf_token %}                  
+                <td>
+                    <button type="submit" id="btnVerDetallePedido" name="btnVerDetallePedido" class="btn btn-info" value={{pedidoCreado.0}}>Ver Detalle</button>
+                </td>
+        </form>  
+            {% empty %}
+            <h2 style="color: chocolate; font-size: x-large; margin: auto;
+            text-align: center;
+            font-weight: bold; padding: 20px;">No hay pedidos por recepcionar.</h2>
+            {% endfor %}
+    </tr>           
+        
+        
+    </tbody>
+</table>
+
+<h1 id="titulo">PEDIDOS CANCELADOS</h1> 
+<div id="space"></div>
+<table class="table table-striped table-bordered" id="tablaPediCancel" name="tablaPediCancel">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Fecha de Creación</th> 
+            <th>TOTAL</th> 
+            <th>Detalle</th> 
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for pedidoCreado in lpedidosCancelados   %} 
+    <tr>
+        <td>{{pedidoCreado.0}}</td>
+        <td>{{pedidoCreado.1}} </td>
+        <td>$&nbsp;{{pedidoCreado.3}} </td>       
+        <form action="{% url 'mostrarpedido' %}" method="POST"> 
+            {% csrf_token %}                  
+                <td>
+                    <button type="submit" id="btnVerDetallePedido" name="btnVerDetallePedido" class="btn btn-info" value={{pedidoCreado.0}}>Ver Detalle</button>
+                </td>
+        </form>  
+            {% empty %}
+            <h2 style="color: rosybrown; font-size: x-large; margin: auto;
+            text-align: center;
+            font-weight: bold; padding: 20px;">No hay pedidos cancelados.</h2>
+            {% endfor %}
+    </tr>          
+        
+    </tbody>
+</table>
+
+
+
+<h1 id="titulo">PEDIDOS RECHAZADOS</h1> 
+<div id="space"></div>
+<table class="table table-striped table-bordered" id="tablaPediRechaz" name="tablaPediRechaz">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Fecha de Creación</th> 
+            <th>TOTAL</th>
+            <th>Detalle</th>  
+        </tr>
+    </thead>
+    <tbody>
+        {% for pedidoCreado in lpedidosRechazados   %} 
+    <tr>
+        <td>{{pedidoCreado.0}}</td>
+        <td>{{pedidoCreado.1}} </td>
+        <td>$&nbsp;{{pedidoCreado.3}} </td>       
+        <form action="{% url 'mostrarpedido' %}" method="POST"> 
+            {% csrf_token %}                  
+                <td>
+                    <button type="submit" id="btnVerDetallePedido" name="btnVerDetallePedido" class="btn btn-info" value={{pedidoCreado.0}}>Ver Detalle</button>
+                </td>
+        </form>  
+            {% empty %}
+            <h2 style="color: cornflowerblue; font-size: x-large; margin: auto;
+            text-align: center;
+            font-weight: bold; padding: 20px;">No hay pedidos rechazados.</h2>
+            {% endfor %}
+    </tr>           
+        
+        
+    </tbody>
+</table>
+
+
+
+{% else %}
+<h1 id="mensaje" >Usted no esta autorizado para estar en este lugar</h1>
+{% endif %}
+{% endblock %}

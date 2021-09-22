@@ -1,0 +1,24 @@
+{% extends 'plantilla.html' %} {% load widget_tweaks %}
+
+{% block title %}Hostal Doña Clarita - Plato{% endblock title %}Habitacion
+
+{% block content %}
+{% if user.is_superuser %}
+<h1 id="titulo">Hostal Doña Clarita</h1> 
+
+
+    <H1>Bienvenido {{nombreAdmin}}</H1>
+        <h3>En esta plataforma usted puede administrar completamente al hostal.</h3>
+        <br>
+        <div style=" text-align: center">
+            <img src="../static/images/oficina.jpg" alt="La oficina">
+        </div>
+  
+    <div id="space"></div>
+    <div id="space"></div>
+
+
+{% else %}
+<h1 id="mensaje" >Usted no esta autorizado para estar en este lugar</h1>
+{% endif %}
+{% endblock %}

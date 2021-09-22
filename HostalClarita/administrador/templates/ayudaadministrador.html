@@ -1,0 +1,232 @@
+{% extends 'plantilla.html' %} {% load widget_tweaks %}
+
+{% block title %}Hostal Doña Clarita - Plato{% endblock title %}Habitacion
+
+{% block content %}
+{% if user.is_superuser %}
+
+<h1 id="titulo">SOPORTE DEL HOSTAL CLARITA</h1>
+<p style="text-align: center; font-size: x-large;" >Este manual de ayuda sirve para cada una de las funciones que usted puede ver en la barra de navegación superior. Haga click en el manual que le interese y se desplegará la explicación.</p>
+<h2 id="titulo">¿Con qué necesitas ayuda?</h2> 
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="headingOne"  style="text-align: center;">
+        <h4 class="panel-title"  >
+          <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Manual sistema de Habitaciones
+          </a>
+        </h4>
+      </div>
+      <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+        <div class="panel-body">
+            Este sistema de habitaciónes tiene disponible una lista con el cual podra agregar una habitación por su numero de habitación, una breve
+            descripcion, la disponibilidad de la misma y por ultimo el precio. Una vez agregada la habitación esta se vera reflejada en una tabla
+            inferior donde se podran ver todos los atributos agregados, ademas de poder actualizar la información y eliminar con los botones de
+            accion que tiene a la derecha de esta misma tabla.
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div  class="panel-heading" style="text-align: center;" role="tab" id="headingTwo">
+        <h4 class="panel-title">
+          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+           Manual sistema de Huéspedes Actuales
+          </a>
+        </h4>
+      </div>
+      <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+        <div class="panel-body">
+            Sistema que le muestra todos los huéspedes que se encuentran en el hostal. 
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading" style="text-align: center;" role="tab" id="headingThree">
+        <h4 class="panel-title">
+          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            Manual Sistema Libro de Huéspedes
+          </a>
+        </h4>
+      </div>
+      <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+        <div class="panel-body">
+            Sistema que muestra a todos los huéspedes qué ha tenido, tiene y tendrá el hostal.
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading" style="text-align: center;" role="tab" id="headingFour">
+          <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                Manual Sistema de Facturas
+            </a>
+          </h4>
+        </div>
+        <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+          <div class="panel-body">
+            Este sistema permite la anulación de las facturas. Esta zona es dedicada por lo que se le pregunta antes de querer borrarla.
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading" style="text-align: center;" role="tab" id="headingFive">
+          <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                Manual Sistema de Comedores
+            </a>
+          </h4>
+        </div>
+        <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+          <div class="panel-body">
+            Este sistema permite crear, buscar, actualizar y eliminar comedores de servicio, en caso de que quiera buscar actualizar
+            o eliminar debera usar una id para buscar el comedor, la cual sera otorgada una vez se cree un comedor.
+
+         </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading" style="text-align: center;" role="tab" id="headingSix">
+          <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                Manual Sistema de Platos
+            </a>
+          </h4>
+        </div>
+        <div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
+          <div class="panel-body">
+            Este sistema  tiene disponible una lista con la cual podrá agregar el nombre del plato, el dia en el que se servirá el mismo,
+            la hora, el precio correspondiente del plato y por último una id con la cual reconocerlo. Una vez agregado el plato en la parte inferior 
+            se desplegará una tabla con los datos ingresados, además de poder eliminar y actualizar los datos de los platos con unos botones de
+            accion que tiene a la derecha de esta misma tabla.
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading" style="text-align: center;" role="tab" id="headingSeven">
+            <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                Manual Sistema de Pedidos
+            </a>
+            </h4>
+        </div>
+        <div id="collapseSeven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSeven">
+            <div class="panel-body">
+            Este sistema muestra todos los pedidos que se han realizado en el hostal, se pueden revisar y eliminar.
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading" style="text-align: center;" role="tab" id="headingEight">
+            <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                Manual Sistema de Productos
+            </a>
+            </h4>
+        </div>
+        <div id="collapseEight" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEight">
+            <div class="panel-body">
+                Este sistema muestra todos los productos que el hostal puede pedir a todos sus proveedores.
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading" style="text-align: center;" role="tab" id="headingNine">
+            <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                Manual Sistema de Familia de Producto
+            </a>
+            </h4>
+        </div>
+        <div id="collapseNine" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingNine">
+            <div class="panel-body">
+                En este sistema se puede crear, buscar, actualizar y eliminar familias de productos, en caso de que quiera buscar actualizar
+                o eliminar debera usar una id para buscar una familia, la cual sera otorgada una vez se haya creado una familia de productos.
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading" style="text-align: center;" role="tab" id="headingTen">
+            <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+                Manual Sistema de Monedas
+            </a>
+            </h4>
+        </div>
+        <div id="collapseTen" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTen">
+            <div class="panel-body">
+                En este sistema se puede crear, buscar, actualizar y eliminar monedas de servicio, en caso de que quiera buscar actualizar
+                o eliminar debera usar una id para buscar la moneda agregada, la cual sera otorgada una vez se haya creado una moneda.  
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading" style="text-align: center;" role="tab" id="headingEleven">
+            <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
+                Manual Sistema de Estadisticas
+            </a>
+            </h4>
+        </div>
+        <div id="collapseEleven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEleven">
+            <div class="panel-body">
+                Este sistema entrega tres informes importantes para la gestión de nuestro hostal: nos da las ganancias que hemos tenido mensual y anualmente, también cálcula
+                los gastos que hemos tenido mensual y anualmente. Además muestra las visitas que ha tenido la página web del hostal. 
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading" style="text-align: center;" role="tab" id="headingDoce">
+            <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseDoce" aria-expanded="false" aria-controls="collapseDoce">
+                Manual Sistema de Registro de Usuarios
+            </a>
+            </h4>
+        </div>
+        <div id="collapseDoce" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingDoce">
+            <div class="panel-body">
+               En este sistema usted puede registrar a nuestros empleados o proveedores. También se le da la opción de crear clientes.
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading" style="text-align: center;" role="tab" id="headingTrece">
+            <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTrece" aria-expanded="false" aria-controls="collapseTrece">
+                Manual de sistema de Módulos.
+            </a>
+            </h4>
+        </div>
+        <div id="collapseTrece" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTrece">
+            <div class="panel-body">
+               Aquí puede acceder a la vista y funcionamiento de los siguientes tipos de usuarios: Cliente, Proveedor y Empleado.
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading" style="text-align: center;" role="tab" id="headingCatorce">
+            <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseCatorce" aria-expanded="false" aria-controls="collapseCatorce">
+                Manual de sistema de Hostal.
+            </a>
+            </h4>
+        </div>
+        <div id="collapseCatorce" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingCatorce">
+            <div class="panel-body">
+               Aquí puede actualizar el hostal de manera manual presionando sólo un botón, ese botón asignará y liberará habitaciones acorde los días reservados por los huéspedes. 
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+  </div>
+
+<div id="space"></div>
+
+{% else %}
+<h1 id="mensaje" >Usted no esta autorizado para estar en este lugar</h1>
+{% endif %}
+{% endblock %}

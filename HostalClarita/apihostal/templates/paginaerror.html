@@ -1,0 +1,30 @@
+{% load static %} 
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/error.css' %}">
+
+
+    <title>ERROR</title>
+</head>
+<body>
+<div class="divContenido" style="text-align: center;">
+    <br>
+    <h1><b>ERROR 404: ALGO HA OCURRIDO CON EL SERVIDOR.</b></h1>
+    <br>
+    <button class="btn btn-success" onclick="volverAtras()"><b>Volver a la página anterior</b></button>
+    <br>
+
+    <br>
+    <img src="../static/images/fantasmas.jpg" alt="Fantasmas de error">
+
+</div>
+
+<script src="{% static 'js/paginaerror.js' %}"></script>
+
+</body>
+</html>

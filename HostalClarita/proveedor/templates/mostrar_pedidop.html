@@ -1,0 +1,63 @@
+{% extends 'plantilla_proveedor.html' %}
+
+{% block title %}Proveedor{% endblock title %}
+
+{% block content %}
+{% if user.is_proveedor == True or user.is_superuser %}
+<h1 id="titulo">Orden de Pedido Número: {{numeroOrden}}</h1> 
+<div id="space"></div>
+<label>Numero Orden: {{numeroOrden}}</label>
+<label>Fecha Emisión: {{fechaCreacion}}</label>
+<label>Total a Pagar: {{precioTotal|floatformat}}</label>
+<label>Proveedor: {{datosProveedor}}</label>
+<label>Solicitante: {{datosSolicitante}}</label>
+
+
+
+<div id="space"></div>
+<h1 id="titulo">Detalle del pedido</h1> 
+<table class="table table-striped table-bordered">
+  <thead>
+        <tr>
+            <th>Código Producto</th>
+            <th>Nombre</th>
+            <th>Marca</th> 
+            <th>Descripción</th> 
+            <th>Fecha de Vencimiento</th>
+            <th>Precio Unidad</th>
+            <th>Cantidad</th>
+            <th>Total a pagar</th>
+        </tr>
+  </thead>
+  <tbody>
+      {% for productoDeseado in listaProductosOP %} 
+  <tr>      
+      <td>{{productoDeseado.0}}</td>
+      <td>{{productoDeseado.1}}</td>
+      <td>{{productoDeseado.2}} </td>
+      <td>{{productoDeseado.3}} </td>
+      <td>{{productoDeseado.6}} </td>
+      <td>$&nbsp;{{productoDeseado.7|floatformat}} </td>   
+      <td>{{productoDeseado.10}} </td>   
+      <td>{{productoDeseado.11}} </td>  
+        
+   
+
+          {% empty %}
+          <h2 style="color: red; font-size: x-large; margin: auto;
+          text-align: center;
+          font-weight: bold; padding: 20px;">No hay detalles de pedido para mostrar.</h2>
+          {% endfor %}
+  </tr>           
+      
+      
+  </tbody>
+</table>
+
+<button class="btn btn-info" onclick="volverAtras()"><b>Volver a la página anterior</b></button>&nbsp;<button onclick="window.print()" class="btn btn-info">Imprimir el pedido</button>
+<div id="space"></div>
+
+{% else %}
+<h1 id="mensaje" >Usted no esta autorizado para estar en este lugar</h1>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,26 @@
+{% load static %} {% load widget_tweaks %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/styles_huesped.css' %}">
+    <title>Eliminar huesped</title>
+</head>
+<body>
+
+<div class="center">
+<div class = "box">
+    <h2> Eliminando huesped con el indice {{item}}: </h2>
+    <form action = "{% url 'eliminar-huesped' item %}" method = "POST" >
+    {% csrf_token %}
+
+    <div id="space"></div>
+    <button type="submit" class="btn btn-danger" >Eliminar</button>
+</div>
+</div>
+    
+</body>
+</html>

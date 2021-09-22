@@ -1,0 +1,65 @@
+{% extends 'plantilla_proveedor.html' %}
+
+{% block title %}Proveedor{% endblock title %}
+
+{% block content %}
+{% if user.is_proveedor == True or user.is_superuser %}
+<h1 id="titulo">SOPORTE DEL HOSTAL CLARITA</h1> 
+<p style="text-align: center; font-size: x-large;" >Este manual de ayuda sirve para cada una de las funciones que usted puede ver en la barra de navegación superior. Haga click en el manual que le interese y se desplegará la explicación.</p>
+<h2 id="titulo">¿Con qué necesitas ayuda?</h2> 
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="headingOne"  style="text-align: center;">
+        <h4 class="panel-title"  >
+          <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Manual Sistema de Productos
+          </a>
+        </h4>
+      </div>
+      <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+        <div class="panel-body">
+            En este sistema usted cuenta con una tabla de datos de sus productos en venta. Para poder agregar productos tiene que poner el nombre, marca, descripcion, fecha de vencimiento, precio, stock, stock critico y la familia del producto.
+            , también cuenta con una tabla inferior que muestra todos sus productos, desde la misma tabla, usted puede eliminar el producto o 
+            actualizar la informacion de este.
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div  class="panel-heading" style="text-align: center;" role="tab" id="headingTwo">
+        <h4 class="panel-title">
+          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            Manual Sistema de Ordenes de Pedido Pendientes
+          </a>
+        </h4>
+      </div>
+      <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+        <div class="panel-body">
+            En este sistema usted cuenta con una tabla de pedidos pendientes, enviados por los empleados del hostal, aquí usted tiene la función de cancelar 
+            el pedido en caso de algun problema, también puede visualizar en detalle el pedido y por ultimo hacer el envío de productos al hostal.   
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading" style="text-align: center;" role="tab" id="headingThree">
+        <h4 class="panel-title">
+          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            Manual Sistema Historial de Ordenes de Pedido
+        </a>
+        </h4>
+      </div>
+      <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+        <div class="panel-body">
+            En este sistema usted cuenta con una tabla donde se podran ver 4 puntos principales, en la parte superior se muestran los pedidos aceptados, posterior a este los pedidos entregados, mas abajo los pedidos cancelados
+            y por último los pedidos rechazados, todos cuentan con un botón de Ver detalle, para poder visualizar con lujo y detalle los pedidos.
+        </div>
+      </div>
+    </div>
+
+</div>
+<div id="space"></div>
+
+{% else %}
+<h1 id="mensaje" >Usted no esta autorizado para estar en este lugar</h1>
+{% endif %}
+
+{% endblock %}

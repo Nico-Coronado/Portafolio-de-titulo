@@ -1,0 +1,175 @@
+{% extends 'plantilla.html' %} {% load widget_tweaks %}
+
+{% block title %}Hostal Doña Clarita - Moneda{% endblock title %}
+
+{% block listacrud %} 
+    <div class="container">
+        <h1 id='titulo'>Todas las monedas</h1>
+        <table class="table table-striped table-bordered">
+            <thead>
+            <tr>
+                <th>ID Moneda</th>
+                <th>Código Moneda</th>  
+                <th>Valor en Pesos Chilenos</th>          
+        
+            </tr>
+            </thead>            
+            <tbody>  
+                {% for moneda in moneda_objs %}                   
+                    <tr>
+                        <td> {{ moneda.id|upper }}</td>    
+                        <td> {{ moneda.codigo_moneda|upper }}</td>
+                        <td> $ {{ moneda.valor_peso|upper }}</td>
+                    </tr>
+                    {% empty %}
+                    <h2 style="color: red; font-size: x-large; margin: auto;
+                    text-align: center; font-weight: bold; padding: 20px;">
+                        NO HAY MONEDAS
+                    </h2>    
+                {% endfor %}  
+            </tbody>
+        </table>
+    
+<div style="text-align: center;">
+        <div class="pagination">
+            <span class="step-links">
+                {% if moneda_objs.has_previous %}
+                    <a class="btn btn-primary" href="?page=1">&laquo; Primero</a>
+                    <a class="btn btn-info" href="?page={{ moneda_objs.previous_page_number }}">Anterior</a>
+                {% endif %}
+        
+                <span class="current">
+                    Página {{ moneda_objs.number }} de {{ moneda_objs.paginator.num_pages }}.
+                </span>
+        
+                {% if moneda_objs.has_next %}
+                    <a class="btn btn-info" href="?page={{ moneda_objs.next_page_number }}">Siguiente</a>
+                    <a class="btn btn-primary" href="?page={{ moneda_objs.paginator.num_pages }}">Último &raquo;</a>
+                {% endif %}
+            </span>
+        </div>  
+    </div>
+</div>
+
+{% endblock listacrud %}
+
+
+{% block content %}
+{% if user.is_superuser %}
+    <h1 id='titulo'> Crear </h1>
+    <b></b>
+    <div class="formulario">
+    <form action = "{% url 'admin-moneda' %}" method = "POST" >
+        {% csrf_token %}
+        {% for field in form.visible_fields %}
+            <div class="form-group">
+                {{ field.label_tag }}
+                {% render_field field class="form-control" %}
+                    
+            </div>
+
+        
+        {% endfor %}
+
+        <div id="space"></div>
+        <button type="submit" name="crear_moneda" class="btn btn-primary btn-block" >Agregar moneda</button>
+        <br>
+        
+        {% if messages %}
+    <!-- <ul class="messages">
+        {% for message in messages %}
+            <script>alert(" {{ message}} ")</script>
+        {% endfor %}
+    </ul>     -->
+
+      {% endif %}
+    </form>
+    </div>
+
+    <h1 id='titulo'>Leer</h1>
+    
+    <div class="formulario"> 
+        <form action="{% url 'admin-moneda' %}" method="post">
+            {% csrf_token %}
+            {% for field in formLeer.visible_fields %}
+            <div class="form-group">
+                {{ field.label_tag }}
+                {% render_field field class="form-control" %}
+                    
+            </div>
+            
+            
+        
+        {% endfor %}
+        <button class="btn btn-primary btn-block" type="submit">Buscar</button>
+        <br>
+        <div class="panel panel-default">
+            <div class="panel-heading">Resultado Busqueda</div>
+            <div class="panel-body">
+              {{productFame}}
+            </div>
+          </div>
+    
+            
+        </form>
+
+
+        
+    </div>     
+    <h1 id='titulo'>Actualizar</h1>
+    <div class="formulario">
+        <form action="{% url 'admin-moneda' %}" method="post">
+            {% csrf_token %}
+            {% for field in formActua.visible_fields %}
+            <div class="form-group">
+                {{ field.label_tag }}
+                {% render_field field class="form-control" %}
+                    
+            </div>
+            
+
+            
+            
+        
+        {% endfor %}
+        <button class="btn btn-primary btn-block" id="btnActuMon" name="btnActuMon" type="submit">Actualizar</button>
+    
+            
+        </form>
+
+
+    </div>
+<h1 id='titulo'>Eliminar</h1>
+<div class="formulario">
+    <form action="{% url 'admin-moneda' %}" method="post">
+        {% csrf_token %}
+        {% for field in formEli.visible_fields %}
+        <div class="form-group">
+            {{ field.label_tag }}
+            {% render_field field class="form-control" %}
+                
+        </div>
+        
+
+        
+        
+    
+    {% endfor %}
+    <button class="btn btn-primary btn-block" type="submit">Eliminar</button>
+
+        
+    </form>
+
+
+</div>
+
+
+
+
+
+{% else %}
+<h1 id="mensaje" >Usted no esta autorizado para estar en este lugar</h1>
+{% endif %}
+{% endblock %}
+
+</div>
